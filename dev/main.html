@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PV Sizing Calculator</title>
+  </head>
+  <body style="margin-top: 60px;">
+    <div class="container">
+
+      <div class="jumbotron text-white" style="background-image: url('https://images.unsplash.com/photo-1463173904305-ba479d2123b7'); background-size: cover; background-position: 0 60%;">
+        <h2>GetSolar : PV Sizing Calculator</h2>
+        <p class="lead">Learn, Apply, Save</p>
+      </div>
+
+      <form id="pv" style="margin-bottom: 2rem"> 
+        <div class="jumbotron" style="background: none; border: 1px solid rgba(0,0,0,0.1); padding-top: 32px; padding-bottom: 32px;">
+          <div class="form-group row">
+            <label for="address" class="col-xs-12 col-md-3 col-form-label">Home Address</label>
+            <div class="col-xs-12 col-md-9">
+              <input type="text" autocomplete="off" name="address" placeholder="742 Evergreen Terrace, Saint Joseph, MI 64505" class="form-control" id="address">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="annualElecUsage" class="col-xs-12 col-md-3 col-form-label">Annual Elec. Usage</label>
+            <div class="col-xs-12 col-md-9">
+              <div class="input-group">
+                <input type="text" autocomplete="off" name="annualElecUsage" placeholder="6000" class="form-control" id="annualElecUsage">
+                <div class="input-group-addon">kWh</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="elecRatePerKWH" class="col-xs-12 col-md-3 col-form-label">Electricity Rate <span class="tag tag-default" style="position: relative; top: -2px; opacity: 0.5">Optional</span></label>
+            <div class="col-xs-12 col-md-9">
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input type="text" autocomplete="off" class="form-control" id="elecRatePerKWH" name="elecRatePerKWH" placeholder="0.12">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-xs-12 col-md-3 col-form-label">Mount Type</label>
+            <div class="col-xs-12 col-md-9">
+
+              <fieldset>
+                  <label class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="mounting" id="mounting1" value="1">
+                    Roof Mounted
+                  </label>
+                <label class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="mounting" id="mounting2" value="0">
+                    Ground Mounted
+                  </label>
+              </fieldset>
+
+            </div>
+          </div>
+
+          <div class="form-group row" style="margin-bottom: 0;">
+            <label class="col-xs-12 col-md-3 col-form-label">Mount Angle</label>
+            <div class="col-xs-12 col-md-9">
+              <fieldset>
+                  <label class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection1" value="0">
+                    North
+                  </label>
+                <label class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection2" value="90">
+                    East
+                  </label>
+                <label class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection3" value="180">
+                    South
+                  </label>
+                <label class="form-check-inline">
+                    <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection3" value="270">
+                    West
+                  </label>
+              </fieldset>
+            </div>
+          </div>
+        </div>       
+
+        <div class="form-group">
+          <input type="submit" value="Calculate Size" class="btn btn-outline-primary btn-block btn-lg" id="submit">
+        </div>
+      </form>
+
+
+      <div id="output" class="alert alert-info fade in" role="alert" style="opacity: 0">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">System Capacity</div>
+          <div class="col-xs-12 col-md-9">
+            <p style="margin-bottom:0px;"><span class="capacity"></span> kW</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-3">Annual Production</div>
+          <div class="col-xs-12 col-md-9">
+            <p style="margin-bottom:0px;"><span class="production"></span> kWh</p>
+          </div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="col-xs-12 col-md-3">Regular Power Bill</div>
+          <div class="col-xs-12 col-md-9">
+            <p style="margin-bottom:0px;">$<span class="withoutSystem"></span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-3">Generated Electricity Value</div>
+          <div class="col-xs-12 col-md-9">
+            <p style="margin-bottom:0px;">$<span class="earnings"></span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-3">Power Bill with Solar</div>
+          <div class="col-xs-12 col-md-9">
+            <p style="margin-bottom:0px;">$<span class="withSystem"></span></p>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+
+  <script src="js/main.js"></script>
+</html>
