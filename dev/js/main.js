@@ -1,5 +1,7 @@
 $(document).ready(solarReady);
 
+var chart;
+
 function solarReady() {
 
   $('#pv').submit(function(e) {
@@ -52,6 +54,27 @@ function solarReady() {
               elecRate = Math.floor(utilityData.outputs.residential * 100) / 100
               $('#elecRatePerKWH').attr('placeholder', elecRate);
             }
+
+             // ac_monthly data
+            var ac_monthly_pre = pvData.outputs.ac_monthly;
+            // ac_monthly array for new formatted data
+            var ac_monthly = [];
+            // format ac_monthly
+            ac_monthly_pre.forEach(function(num) {
+              ac_monthly.push(Math.round(num*100)/100);
+            });
+            // if data is present in chart remove it
+            if (chart != undefined) {
+              options.series.pop();
+              console.log('data in chart');
+            }
+            // add plot data
+            options.series.push( {
+              name: 'AC Monthly', 
+              data: ac_monthly 
+            } );
+            // create chart
+            chart = new Highcharts.Chart(options);
 
             $('#output .capacity').text(Math.ceil(pvData.inputs.system_capacity * 10)/10);
             $('#output .production').text(Math.floor(pvData.outputs.ac_annual));
