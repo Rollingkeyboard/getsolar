@@ -14,6 +14,22 @@ function solarReady() {
 
     var elecRate = formData.elecRatePerKWH || false;
 
+    // check if address is valid
+    var str_address = formData.address;
+    var split_address = str_address.split(",");
+    var address_validation = validateAddress(split_address);
+    if (address_validation == false) {
+      formData.address = false;
+      $('.jumbotron').children().eq(2).addClass("has-danger");
+    } else {
+      $('.jumbotron').children().eq(2).removeClass("has-danger");
+    }
+    console.log(formData.address);
+
+    // if(formData.address == '6412 Burgundy way'){
+    //   formData.address = false;
+    // }
+
     if (formData.address && formData.annualElecUsage && formData.mounting && formData.mountDirection) {
 
       $('#submit').val('Loading...').attr('disabled', true);
