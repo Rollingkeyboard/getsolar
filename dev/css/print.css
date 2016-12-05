@@ -1,0 +1,13 @@
+
+/*css styles set in place for printing purposes*/
+@media print {
+    #output {
+    	margin-top: 300px;
+    }
+    .info-section{
+    	display: none;
+    }
+    .btn{
+    	display: none;
+    }
+}

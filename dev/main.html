@@ -1,152 +1,194 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <!-- css styles form bootstrap libarary -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- css styles for printing -->
+    <link rel="stylesheet" type="text/css" media="print" href="css/print.css">
+
+    <!-- Pv sizing webapp for assisting novice photovoltaic users with selecing an optimal system size to accomidate their home's annual ectricity usage. -->
     <title>PV Sizing Calculator</title>
-  </head>
-  <body style="margin-top: 60px;">
+</head>
+
+<body style="margin-top: 60px;">
     <div class="container">
-
-      <div class="jumbotron text-white" style="background-image: url('https://images.unsplash.com/photo-1463173904305-ba479d2123b7'); background-size: cover; background-position: 0 60%;">
-        <h2>GetSolar : PV Sizing Calculator</h2>
-        <p class="lead">Learn, Apply, Save</p>
-      </div>
-
-      <form id="pv" style="margin-bottom: 2rem"> 
-        <div class="jumbotron" style="background: none; border: 1px solid rgba(0,0,0,0.1); padding-top: 32px; padding-bottom: 32px;">
-          <div class="form-group row">
-            <label for="address" class="col-xs-12 col-md-3 col-form-label">Home Address</label>
-            <div class="col-xs-12 col-md-9">
-              <input type="text" autocomplete="off" name="address" placeholder="742 Evergreen Terrace, Saint Joseph, MI 64505" class="form-control" id="address">
+        <div class="jumbotron text-white" style="background-image: url('assets/images/solar.jpg'); background-size: cover; background-position: 0 60%;">
+            <h2>GetSolar : PV Sizing Calculator</h2>
+            <p class="lead">Learn, Apply, Save</p>
+        </div>
+        <div>
+            <div class="jumbotron info-section" style="background: none; border: 1px solid rgba(0,0,0,0.1); padding-top: 32px; padding-bottom: 32px;">
+            <p>
+            Photovoltaic system (PV) advisory web app calculator, meant to assist novice, residential owners with sizing a solar system to meet their annual energy loads.  The website's goal is to increase the number of knowledgeable citizens who make well-informed decisions when purchasing solar products by estimating the energy production and cost of grid-tied photovoltaic systems at the residential scale.
+            </p>
+            <p>
+            Complete the form below to recieve:
+            <br>- A photovoltaic system (PV) size estimate
+            <br>- Information on the financial benefits of owning a system.
+            <br><br>
+            Utilize the highlighted "?" marks to assist you through using the app</p>
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="annualElecUsage" class="col-xs-12 col-md-3 col-form-label">Annual Elec. Usage</label>
-            <div class="col-xs-12 col-md-9">
-              <div class="input-group">
-                <input type="text" autocomplete="off" name="annualElecUsage" placeholder="6000" class="form-control" id="annualElecUsage">
-                <div class="input-group-addon">kWh</div>
-              </div>
+        </div>
+        <form id="pv" style="margin-bottom: 2rem">
+            <div class="jumbotron" style="background: none; border: 1px solid rgba(0,0,0,0.1); padding-top: 32px; padding-bottom: 32px;">
+                <div class="form-group row">
+                    <label for="address" class="col-xs-12 col-md-3 col-form-label">Home Address<a href="#/" data-toggle="popover" data-content="The address field is used to locate the nearest weather station to your home, this will increase the accuracy of the system calculation by using a combination of solar and temperature data that is most relevant to your location.  You may enter just your area code or a near by address if you prefer to do so.">  ?</a></label>
+                    <div class="col-xs-12 col-md-9">
+                        <input type="text" autocomplete="off" name="address" placeholder="742 Evergreen Terrace, Saint Joseph, MI 64505" class="form-control" id="address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="annualElecUsage" class="col-xs-12 col-md-3 col-form-label">Annual Elec. Usage<a href="#/" data-toggle="popover" data-content="Your electricity usage provided by the local utility companies meter.  Update the electricty usage by looking at your most recent bill (paper/online).  It will be stated as electricity usage based on the most recent 12 months.">  ?</a></label>
+                    <div class="col-xs-12 col-md-9">
+                        <div class="input-group">
+                            <input type="text" autocomplete="off" name="annualElecUsage" placeholder="6000" class="form-control" id="annualElecUsage">
+                            <div class="input-group-addon">kWh</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="elecRatePerKWH" class="col-xs-12 col-md-3 col-form-label">Electricity Rate <span class="tag tag-default" style="position: relative; top: -2px; opacity: 0.5">Optional</span><a href="#/" data-toggle="popover" data-content="Your electricity rate provided by the local utility company.  The national average is $0.12, thus it has been set as a default.  Update the utility rate by looking at your utility rate on your most recent bill (paper/online).  It will be stated as $ amount/kWh">  ?</a></label>
+                    <div class="col-xs-12 col-md-9">
+                        <div class="input-group">
+                            <div class="input-group-addon">$</div>
+                            <input type="text" autocomplete="off" class="form-control" id="elecRatePerKWH" name="elecRatePerKWH" placeholder="0.12">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xs-12 col-md-3 col-form-label">Mount Type<a href="#/" data-toggle="popover" data-content="Select the solar application mounting type.  View the informaiton next to both mounting types, taking into account their positive and negative traits.">  ?</a></label>
+                    <div class="col-xs-12 col-md-9">
+                        <fieldset>
+                            <label class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="mounting" id="mounting1" value="1"> Roof Mounted<a href="#/" data-toggle="popover" data-content="The system will be installed on the roof, allowing for limited installation angles unless a mounting apparatus is applied.  This option will select 20 degress as an optimal mount angle for the system">  ?</a>
+                            </label>
+                            <label class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="mounting" id="mounting2" value="0"> Ground Mounted<a href="#/" data-toggle="popover" data-content="The system will be installed on the ground, allowing for a flexiable installation angle.  This option will select 36 degrees as an optimal mount angle for the sytem.">  ?</a>
+                            </label>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-bottom: 0;">
+                    <label class="col-xs-12 col-md-3 col-form-label">Mount Direction<a href="#/" data-toggle="popover" data-content="The cardinal direction of the installation.  The sun travels east to west, facing the south.  Thus, the performance of the solar application is directly tied to the direction that the solar applicaiton faces.  South being the most efficient, while North being the least efficient.">  ?</a></label>
+                    <div class="col-xs-12 col-md-9">
+                        <fieldset>
+                            <label class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection1" value="0"> North
+                            </label>
+                            <label class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection2" value="90"> East
+                            </label>
+                            <label class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection3" value="180"> South
+                            </label>
+                            <label class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection3" value="270"> West
+                            </label>
+                        </fieldset>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="elecRatePerKWH" class="col-xs-12 col-md-3 col-form-label">Electricity Rate <span class="tag tag-default" style="position: relative; top: -2px; opacity: 0.5">Optional</span></label>
-            <div class="col-xs-12 col-md-9">
-              <div class="input-group">
-                <div class="input-group-addon">$</div>
-                <input type="text" autocomplete="off" class="form-control" id="elecRatePerKWH" name="elecRatePerKWH" placeholder="0.12">
-              </div>
+            <div class="form-group">
+                <input type="submit" value="Calculate Size" class="btn btn-outline-primary btn-block btn-lg" id="submit">
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-xs-12 col-md-3 col-form-label">Mount Type</label>
-            <div class="col-xs-12 col-md-9">
-
-              <fieldset>
-                  <label class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="mounting" id="mounting1" value="1">
-                    Roof Mounted
-                  </label>
-                <label class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="mounting" id="mounting2" value="0">
-                    Ground Mounted
-                  </label>
-              </fieldset>
-
+        </form>
+        <div id="output" class="alert alert-info fade in" role="alert" style="opacity: 0">
+            <div class="row">
+                <div class="col-xs-12 col-md-3">System Capacity<a href="#/" data-toggle="popover" data-content="The total DC Power rating of a photovoltaic system that would need to be installed to meet the annual electricty loads entered in the dialog box above">  ?</a></div>
+                <div class="col-xs-12 col-md-9">
+                    <p style="margin-bottom:0px;"><span class="capacity"></span> kW</p>
+                </div>
             </div>
-          </div>
-
-          <div class="form-group row" style="margin-bottom: 0;">
-            <label class="col-xs-12 col-md-3 col-form-label">Mount Angle</label>
-            <div class="col-xs-12 col-md-9">
-              <fieldset>
-                  <label class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection1" value="0">
-                    North
-                  </label>
-                <label class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection2" value="90">
-                    East
-                  </label>
-                <label class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection3" value="180">
-                    South
-                  </label>
-                <label class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="mountDirection" id="mountDirection3" value="270">
-                    West
-                  </label>
-              </fieldset>
+            <div class="row">
+                <div class="col-xs-12 col-md-3">Annual Production<a href="#/" data-toggle="popover" data-content="The total AC energy that the system is capable of producing during year one of it's operation.  This is how much electricity the system would generate and go towards meeting your building's electricity usage.">  ?</a></div>
+                <div class="col-xs-12 col-md-9">
+                    <p style="margin-bottom:0px;"><span class="production"></span> kWh</p>
+                </div>
             </div>
-          </div>
-        </div>       
-
-        <div class="form-group">
-          <input type="submit" value="Calculate Size" class="btn btn-outline-primary btn-block btn-lg" id="submit">
+            <hr/>
+            <div class="row">
+                <div class="col-xs-12 col-md-3"></div>
+                <div class="col-xs-12 col-md-9">
+                    <p>$/Year</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-3">Generated Value<a href="#/" data-toggle="popover" data-content="The total annual worth in $ dollars of the electricty generated by your pv system.  This is the annual produciton multiplied by the selected utility rate ($/kWh)">  ?</a></div>
+                <div class="col-xs-12 col-md-9">
+                    <p style="margin-bottom:0px;"><span class="earnings"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-3">Regular Power Bill<a href="#/" data-toggle="popover" data-content="The annual electricty bill that you would expect without any solar generation.  This value does not reflect the annual utility bill with fixed cost, incentives and taxes included.">  ?</a></div>
+                <div class="col-xs-12 col-md-9">
+                    <p style="margin-bottom:0px;"><span class="withoutSystem"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-3">Power Bill with Solar<a href="#/" data-toggle="popover" data-content="The annual electricty bill that you would expect with your newly sized solar application.  This value does not reflect the annual utility bill with fixed cost, incentives and taxes included.">  ?</a></div>
+                <div class="col-xs-12 col-md-9">
+                    <p style="margin-bottom:0px;"><span class="withSystem"></span></p>
+                </div>
+            </div>
+            </br>
+            <hr/>
+            <div class="row">
+                <div class="col-xs-12 col-md-3">System Cost<a href="#/" data-toggle="popover" data-content="The total cost of the PV system, including an inverter, labor, and misc items needed to install the system.  This number is attained by using the national average cost/W for PV installations.  This does not include added incentives that would reduce the system cost.  For information on incentives refer to the DSIRE link below">  ?</a></div>
+                <div class="col-xs-12 col-md-9">
+                    <p style="margin-bottom:0px;"><span class="systemcost"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-3">Payback Period<a href="#/" data-toggle="popover" data-content="The time it would take for the Photovoltaic system to pay for itself through annual electricity bill reductions.  This does not include added incentives that would reduce the payback period.  For information on incentives refer to the DSIRE link below">  ?</a></div>
+                <div class="col-xs-12 col-md-9">
+                    <p style="margin-bottom:0px;"><span class="payback"></span> Yr(s)</p>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <!-- <div class="row">
+            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            </div> -->
+            <p><small>Annual electricity cost estimation does not include utility fixed cost, time of use rate, or taxes.</small></p>
+            <p><small>Payback Period does not account for available incentives.<br>For a list of incentives, visit <a target="_blank" href="http://www.dsireusa.org/">DSIRE </a>(Database of State Incentives for Renewables & Efficiency)</small>
+            </p>
+            <button class="btn btn-warning" onclick="printme()">Print this page</button>
         </div>
-      </form>
-
-
-      <div id="output" class="alert alert-info fade in" role="alert" style="opacity: 0">
-        <div class="row">
-          <div class="col-xs-12 col-md-3">System Capacity</div>
-          <div class="col-xs-12 col-md-9">
-            <p style="margin-bottom:0px;"><span class="capacity"></span> kW</p>
-          </div>
+        <!-- Google forms feedback modal -->
+        <div class="container">
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#myModal">Provide Feedback</button><br><br>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content" style="width: 730px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSevWn5LjopCOSei5z6cUdzuh5U13L7J30VJbzcBe-0KOt_LPg/viewform?embedded=true" width="700" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+                            <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal">Close After Submitting</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12 col-md-3">Annual Production</div>
-          <div class="col-xs-12 col-md-9">
-            <p style="margin-bottom:0px;"><span class="production"></span> kWh</p>
-          </div>
-        </div>
-        <hr/>
-        <div class="row">
-          <div class="col-xs-12 col-md-3"></div>
-          <div class="col-xs-12 col-md-9">
-            <p>$/Year</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-md-3">Generated Value</div>
-          <div class="col-xs-12 col-md-9">
-            <p style="margin-bottom:0px;">$<span class="earnings"></span></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-md-3">Regular Power Bill</div>
-          <div class="col-xs-12 col-md-9">
-            <p style="margin-bottom:0px;">$<span class="withoutSystem"></span></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-md-3">Power Bill with Solar</div>
-          <div class="col-xs-12 col-md-9">
-            <p style="margin-bottom:0px;">$<span class="withSystem"></span></p>
-          </div>
-        </div>
-        </br>
-        <div class="row">
-          <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-        </div>
-        <hr/>
-        <p><small>Annual electricity cost estimation does not include fixed cost or taxes.</small></p>
-      </div>
-    
-    </div>
-  </body>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-  <script src="js/main.js"></script>
-  <script src="js/validateForm.js"></script>
-  <script src="js/chart.js"></script>
+        <!-- Google forms feedback modal -->
+</body>
+<!-- import jquery for functionality -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+<!-- import ajax for functionality and api calls -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+<!-- import bootstrap for css styling -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+<script src="js/jquery.formatCurrency-1.4.0.js"></script>
+<!-- import main js scripts for webapp functionality -->
+<script src="js/main.js"></script>
+<!-- import validation form to validate input boxes -->
+<script src="js/validateForm.js"></script>
+<script>
+function printme() {
+    window.print();
+}
+</script>
 </html>
