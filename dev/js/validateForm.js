@@ -17,12 +17,14 @@ function validateAddress(arr) {
 		var zip = getZip[getZip.length-1];
 		//check zipcode is a number
 		if(isNaN(zip)) {
+			alert("Please enter a valid address & zipcode");
 			return false;
 		}
 	} else {
 		zip = split_street[split_street.length-1];
 		// check if zipcode is a number
 		if(isNaN(zip)) {
+			alert("Please enter a valid address & zipcode");
 			return false;
 		}
 	}
